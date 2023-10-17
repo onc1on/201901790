@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_analog_clock/flutter_analog_clock.dart';
 
 void main() {
   runApp(
@@ -59,6 +60,37 @@ class testWidget extends StatelessWidget {
           Text(
             DateTime.now().toString(),
             style: TextStyle(fontSize: 32, color: Colors.black),
+          ),
+          Stack(
+            children: [
+              Container(
+                width: 250,
+                height: 250,
+                color: Colors.green,
+              ),
+              Container(
+                transform: Matrix4.rotationZ(0.1),
+                width: 220,
+                height: 220,
+                color: Colors.amberAccent,
+              ),
+              Container(
+                transform: Matrix4.rotationZ(0.4),
+                width: 200,
+                height: 200,
+                color: Colors.red,
+                child: AnalogClock(
+                  dialColor: null,
+                  markingColor: Colors.teal,
+                  hourNumberColor: Colors.teal,
+                  secondHandColor: null,
+                ),
+              ),
+              Text(
+                "Stack",
+                style: TextStyle(fontSize: 24, color: Colors.black),
+              ),
+            ],
           ),
         ],
       ),
