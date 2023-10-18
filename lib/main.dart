@@ -21,6 +21,7 @@ class testWidget extends StatefulWidget {
 }
 
 class _testWidgetState extends State<testWidget> {
+  final GlobalKey<AnalogClockState> _analogClockKey = GlobalKey();
 
   late Timer timer;
 
@@ -103,9 +104,10 @@ class _testWidgetState extends State<testWidget> {
                 color: Colors.red,
                 child: AnalogClock(
                   dialColor: null,
+                  dateTime: DateTime.now(),
                   markingColor: Colors.teal,
                   hourNumberColor: Colors.teal,
-                  secondHandColor: null,
+                  secondHandColor: Colors.teal,
                 ),
               ),
               Text(
@@ -121,6 +123,9 @@ class _testWidgetState extends State<testWidget> {
 
   void onTick(Timer timer) {
     print(DateTime.now().toString());
+    setState(() {
+
+    });
   }
 }
 
