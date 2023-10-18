@@ -103,8 +103,8 @@ class _testWidgetState extends State<testWidget> {
                 height: 200,
                 color: Colors.red,
                 child: AnalogClock(
+                  key: _analogClockKey,
                   dialColor: null,
-                  dateTime: DateTime.now(),
                   markingColor: Colors.teal,
                   hourNumberColor: Colors.teal,
                   secondHandColor: Colors.teal,
@@ -124,7 +124,7 @@ class _testWidgetState extends State<testWidget> {
   void onTick(Timer timer) {
     print(DateTime.now().toString());
     setState(() {
-
+      _analogClockKey.currentState!.dateTime = DateTime.now();
     });
   }
 }
