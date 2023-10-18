@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_analog_clock/flutter_analog_clock.dart';
 
@@ -19,6 +21,21 @@ class testWidget extends StatefulWidget {
 }
 
 class _testWidgetState extends State<testWidget> {
+
+  late Timer timer;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      onTick(timer);
+    });
+  }
+  
+
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -101,4 +118,12 @@ class _testWidgetState extends State<testWidget> {
       ),
     );
   }
+
+  void onTick(Timer timer) {
+    print(DateTime.now().toString());
+  }
 }
+
+
+
+
