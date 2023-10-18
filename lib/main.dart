@@ -11,9 +11,14 @@ void main() {
   );
 }
 
-class testWidget extends StatelessWidget {
+class testWidget extends StatefulWidget {
   const testWidget({super.key});
 
+  @override
+  State<testWidget> createState() => _testWidgetState();
+}
+
+class _testWidgetState extends State<testWidget> {
   @override
   Widget build(BuildContext context) {
     return Center(
