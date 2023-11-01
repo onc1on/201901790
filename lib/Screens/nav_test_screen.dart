@@ -22,12 +22,7 @@ class _NavTestScreenState extends State<NavTestScreen> {
           children: [
             TextButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const HomeWidget(),
-                  ),
-                );
+                Navigator.popUntil(context, (route) => route.isFirst);
               },
               child: Text(
                 'Go To Home',
