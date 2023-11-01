@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_project/Screens/test_widget_screen.dart';
 import 'Screens/test_widget.dart';
 
 void main() {
@@ -29,7 +30,14 @@ class _HomeWidgetState extends State<HomeWidget> {
             'Go To Test Widget',
             style: TextStyle(fontSize: 26),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const TestWidgetScreen(),
+              ),
+            );
+          },
         ),
       ),
     );
