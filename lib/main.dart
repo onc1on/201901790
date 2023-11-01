@@ -7,6 +7,9 @@ void main() {
   runApp(
     MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+          title: Text('Home'),
+        ),
         body: testWidget(),
       ),
     ),
