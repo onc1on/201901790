@@ -10,20 +10,20 @@ void main() {
         appBar: AppBar(
           title: Text('Home'),
         ),
-        body: testWidget(),
+        body: TestWidget(),
       ),
     ),
   );
 }
 
-class testWidget extends StatefulWidget {
-  const testWidget({super.key});
+class TestWidget extends StatefulWidget {
+  const TestWidget({super.key});
 
   @override
-  State<testWidget> createState() => _testWidgetState();
+  State<TestWidget> createState() => _TestWidgetState();
 }
 
-class _testWidgetState extends State<testWidget> {
+class _TestWidgetState extends State<TestWidget> {
   final GlobalKey<AnalogClockState> _analogClockKey = GlobalKey();
 
   late Timer timer;
