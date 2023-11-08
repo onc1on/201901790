@@ -25,6 +25,7 @@ class _InputTestScreenState extends State<InputTestScreen> {
           RadioButtonTest(),
           SliderTest(),
           SwitchTest(),
+          PopupTest(),
         ],
       ),
     );
@@ -92,20 +93,20 @@ class _RadioButtonTestState extends State<RadioButtonTest> {
             value: TestValues.r1,
             groupValue: selectedValue,
             onChanged: (value) => setState(() {
-              selectedValue = value;
-            })),
+                  selectedValue = value;
+                })),
         Radio<TestValues>(
             value: TestValues.r2,
             groupValue: selectedValue,
             onChanged: (value) => setState(() {
-              selectedValue = value;
-            })),
+                  selectedValue = value;
+                })),
         Radio<TestValues>(
             value: TestValues.r3,
             groupValue: selectedValue,
             onChanged: (value) => setState(() {
-              selectedValue = value;
-            })),
+                  selectedValue = value;
+                })),
       ],
     );
   }
@@ -127,8 +128,8 @@ class _SliderTestState extends State<SliderTest> {
       children: [
         Text('$value'),
         Slider(
-            value: value,
-            onChanged: (newValue) => setState(() => value = newValue),
+          value: value,
+          onChanged: (newValue) => setState(() => value = newValue),
           label: value.round().toString(),
           divisions: 100,
           max: 100,
@@ -161,20 +162,32 @@ class _SwitchTestState extends State<SwitchTest> {
       children: [
         Column(
           children: [
-            Switch(value: values[0], onChanged: (value) => onChanged(0, value: value)),
-            CupertinoSwitch(value: values[0], onChanged: (value) => onChanged(0, value: value)),
+            Switch(
+                value: values[0],
+                onChanged: (value) => onChanged(0, value: value)),
+            CupertinoSwitch(
+                value: values[0],
+                onChanged: (value) => onChanged(0, value: value)),
           ],
         ),
         Column(
           children: [
-            Switch(value: values[1], onChanged: (value) => onChanged(1, value: value)),
-            CupertinoSwitch(value: values[1], onChanged: (value) => onChanged(1, value: value)),
+            Switch(
+                value: values[1],
+                onChanged: (value) => onChanged(1, value: value)),
+            CupertinoSwitch(
+                value: values[1],
+                onChanged: (value) => onChanged(1, value: value)),
           ],
         ),
         Column(
           children: [
-            Switch(value: values[2], onChanged: (value) => onChanged(2, value: value)),
-            CupertinoSwitch(value: values[2], onChanged: (value) => onChanged(2, value: value)),
+            Switch(
+                value: values[2],
+                onChanged: (value) => onChanged(2, value: value)),
+            CupertinoSwitch(
+                value: values[2],
+                onChanged: (value) => onChanged(2, value: value)),
           ],
         ),
       ],
@@ -185,5 +198,28 @@ class _SwitchTestState extends State<SwitchTest> {
     setState(() {
       values[index] = value!;
     });
+  }
+}
+
+class PopupTest extends StatefulWidget {
+  const PopupTest({super.key});
+
+  @override
+  State<PopupTest> createState() => _PopupTestState();
+}
+
+class _PopupTestState extends State<PopupTest> {
+  TestValues selectedValue = TestValues.r1;
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton(
+      itemBuilder: (context) {
+        return TestValues.values
+            .map(
+                (value) => PopupMenuItem(value: value, child: Text(value.name)))
+            .toList();
+      },
+      onSelected: (newValue) => setState(() => selectedValue = newValue),
+    );
   }
 }
