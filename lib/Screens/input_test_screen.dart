@@ -22,6 +22,7 @@ class _InputTestScreenState extends State<InputTestScreen> {
           CheckBoxTest(),
           RadioButtonTest(),
           RadioButtonTest(),
+          SliderTest(),
         ],
       ),
     );
@@ -103,6 +104,34 @@ class _RadioButtonTestState extends State<RadioButtonTest> {
             onChanged: (value) => setState(() {
               selectedValue = value;
             })),
+      ],
+    );
+  }
+}
+
+class SliderTest extends StatefulWidget {
+  const SliderTest({super.key});
+
+  @override
+  State<SliderTest> createState() => _SliderTestState();
+}
+
+class _SliderTestState extends State<SliderTest> {
+  double value = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text('$value'),
+        Slider(
+            value: value,
+            onChanged: (newValue) => setState(() => value = newValue),
+          label: value.round().toString(),
+          divisions: 100,
+          max: 100,
+          min: 0,
+        ),
       ],
     );
   }
