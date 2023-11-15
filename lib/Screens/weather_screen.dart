@@ -9,7 +9,6 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
-
   Position? position;
   late double latitude;
   late double longitude;
@@ -45,8 +44,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
       return Future.error('Location services are disabled.');
     }
 
-
-
     print('checkPermission 전입니다. ');
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
@@ -68,12 +65,15 @@ class _WeatherScreenState extends State<WeatherScreen> {
     }
 
     print('getCurrentPosition 전입니다. ');
-    // When we reach here, permissions are granted and we can
-    // continue accessing the position of the device.
-    position = await Geolocator.getCurrentPosition();
 
-    latitude = position!.latitude;
-    longitude = position!.longitude;
+    position = await Geolocator.getCurrentPosition();
+    setState(() {
+      // When we reach here, permissions are granted and we can
+      // continue accessing the position of the device.
+
+      latitude = position!.latitude;
+      longitude = position!.longitude;
+    });
 
 
     print(position);
@@ -87,9 +87,20 @@ class _WeatherScreenState extends State<WeatherScreen> {
       appBar: AppBar(
         title: const Text('Weather Screen'),
       ),
-      body: Placeholder(),
+      body: Center(
+        child: Column(
+          children: [
+            Text(
+              'lon : $longitude',
+              style: const TextStyle(fontSize: 18),
+            ),
+            Text(
+              'lat : $latitude',
+              style: const TextStyle(fontSize: 18),
+            ),
+          ],
+        ),
+      ),
     );
   }
-
-
 }
