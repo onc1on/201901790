@@ -16,6 +16,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
   Position? position;
   late double latitude;
   late double longitude;
+  late double temperature;
+  late String cityName;
 
   @override
   void initState() {
@@ -25,6 +27,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
     latitude = 0;
     longitude = 0;
+    temperature = 0;
+    cityName = '';
 
     print('getPosition 전입니다. ');
     getPosition();
@@ -101,10 +105,15 @@ class _WeatherScreenState extends State<WeatherScreen> {
     var weatherData = jsonDecode(response.toString());
 
     double temp = weatherData['main']['temp'];
-    String cityName = weatherData['name'];
+    String name = weatherData['name'];
+
+    setState(() {
+      temperature = temp - 273.15;
+      cityName = name;
+    });
 
     print(temp.toString());
-    print(cityName);
+    print(name);
 
   }
 
@@ -124,6 +133,14 @@ class _WeatherScreenState extends State<WeatherScreen> {
             Text(
               'lat : $latitude',
               style: const TextStyle(fontSize: 18),
+            ),
+            Text(
+              'TEMP : ${temperature.toStringAsFixed(2)}',
+              style: const TextStyle(fontSize: 32),
+            ),
+            Text(
+              'CITY : $cityName',
+              style: const TextStyle(fontSize: 32),
             ),
           ],
         ),
