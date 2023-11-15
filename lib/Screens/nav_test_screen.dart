@@ -3,7 +3,6 @@ import 'package:mobile_project/Screens/input_test_screen.dart';
 import 'package:mobile_project/Screens/test_widget_screen.dart';
 import 'package:mobile_project/Screens/weather_screen.dart';
 
-import '../main.dart';
 
 class NavTestScreen extends StatefulWidget {
   const NavTestScreen({super.key});
@@ -17,7 +16,7 @@ class _NavTestScreenState extends State<NavTestScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Nav Test Screen'),
+        title: const Text('Nav Test Screen'),
       ),
       body: Center(
         child: Column(
@@ -26,7 +25,7 @@ class _NavTestScreenState extends State<NavTestScreen> {
               onPressed: () {
                 Navigator.popUntil(context, (route) => route.isFirst);
               },
-              child: Text(
+              child: const Text(
                 'Go To Home',
                 style: TextStyle(fontSize: 26),
               ),
@@ -40,7 +39,7 @@ class _NavTestScreenState extends State<NavTestScreen> {
                   ),
                 );
               },
-              child: Text(
+              child: const Text(
                 'Go To Test Widget',
                 style: TextStyle(fontSize: 26),
               ),
@@ -54,7 +53,7 @@ class _NavTestScreenState extends State<NavTestScreen> {
                   ),
                 );
               },
-              child: Text(
+              child: const Text(
                 'Go To Input Test',
                 style: TextStyle(fontSize: 26),
               ),
@@ -68,7 +67,7 @@ class _NavTestScreenState extends State<NavTestScreen> {
                   ),
                 );
               },
-              child: Text(
+              child: const Text(
                 'Go To Weather',
                 style: TextStyle(fontSize: 26),
               ),
@@ -77,7 +76,7 @@ class _NavTestScreenState extends State<NavTestScreen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text(
+              child: const Text(
                 'Go To Back',
                 style: TextStyle(fontSize: 26),
               ),

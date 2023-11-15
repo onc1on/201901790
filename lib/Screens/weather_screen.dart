@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -73,12 +74,27 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
       latitude = position!.latitude;
       longitude = position!.longitude;
+
+      getWeather(latitude.toString(), longitude.toString());
     });
+
+    //날씨
 
 
     print(position);
     print('latitude : $latitude');
     print('longitude : $longitude');
+  }
+
+  void getWeather(@required String lat,@required String lon) async {
+
+    final dio = Dio();
+    String apiKey = '';
+    String str = 'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$apiKey';
+    Response response;
+    response = await dio.get(str);
+    print(response.data.toString());
+
   }
 
   @override

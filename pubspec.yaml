@@ -38,6 +38,7 @@ dependencies:
 
   flutter_analog_clock: ^1.0.3
   geolocator: ^10.1.0
+  dio: ^5.3.3
 
 dev_dependencies:
   flutter_test:
