@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -95,6 +97,14 @@ class _WeatherScreenState extends State<WeatherScreen> {
     Response response;
     response = await dio.get(str);
     print(response.data.toString());
+
+    var weatherData = jsonDecode(response.toString());
+
+    double temp = weatherData['main']['temp'];
+    String cityName = weatherData['name'];
+
+    print(temp.toString());
+    print(cityName);
 
   }
 
