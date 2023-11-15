@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:mobile_project/Screens/nav_test_screen.dart';
 import 'package:mobile_project/Screens/test_widget_screen.dart';
 import 'Screens/test_widget.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  dotenv.load(fileName: ".env");
+
   runApp(
     const MaterialApp(
       home: HomeWidget(),

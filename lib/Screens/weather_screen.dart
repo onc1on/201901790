@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:geolocator/geolocator.dart';
 
 class WeatherScreen extends StatefulWidget {
@@ -89,7 +90,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
   void getWeather(@required String lat,@required String lon) async {
 
     final dio = Dio();
-    String apiKey = '';
+    String apiKey = dotenv.get("WEATHER_KEY");
     String str = 'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$apiKey';
     Response response;
     response = await dio.get(str);
