@@ -37,6 +37,15 @@ class _SearchScreenState extends State<SearchScreen> {
                     borderRadius: BorderRadius.circular(8.0),
                     color: Colors.lightBlue[200],
                   ),
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 4.0,
+                  ),
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    alignment: Alignment.center,
+                    child: Text('검색'),
+                  ),
                 ),
               ),
             ],
