@@ -8,8 +8,41 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  late String inputText = '';
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Search Screen'),
+      ),
+      body: Column(
+        children: [
+          Row(
+            children: [
+              Flexible(
+                child: TextField(
+                  onChanged: ( text) {
+                    setState(() {
+                      inputText = text;
+                    });
+                  },
+                ),
+              ),
+              GestureDetector(
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.white,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                    color: Colors.lightBlue[200],
+                  ),
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
