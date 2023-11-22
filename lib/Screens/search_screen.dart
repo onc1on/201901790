@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -29,6 +31,9 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
               ),
               GestureDetector(
+                onTap: () {
+                  searchNaverLocal('text');
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -53,5 +58,24 @@ class _SearchScreenState extends State<SearchScreen> {
         ],
       ),
     );
+  }
+
+  void searchNaverLocal(String text) async {
+
+    Dio dio = new Dio();
+
+    String clientId = dotenv.get("NAVER_CLIENT_ID");
+    String clientSecret = dotenv.get("NAVER_CLIENT_SECRET");
+
+    dio.options.headers['X-Naver-Client-Id']=clientId;
+    dio.options.headers['X-Naver-Client-Secret']=clientSecret;
+
+
+
+    String str = 'https://openapi.naver.com/v1/search/local.json?query=밥&display=10&start=1&sort=random';
+    Response response;
+    response = await dio.get(str);
+    print(response.data.toString());
+
   }
 }
