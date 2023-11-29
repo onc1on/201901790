@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -10,7 +12,10 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  TextEditingController textEditingController = new TextEditingController();
   late String inputText = '';
+  late String recievedText = '';
+  List<String> items = [''];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,16 +28,17 @@ class _SearchScreenState extends State<SearchScreen> {
             children: [
               Flexible(
                 child: TextField(
-                  onChanged: ( text) {
-                    setState(() {
-                      inputText = text;
-                    });
-                  },
+                  controller: textEditingController,
+                  //onChanged: ( text) {
+                  //  setState(() {
+                  //    inputText = text;
+                  //  });
+                  //},
                 ),
               ),
               GestureDetector(
                 onTap: () {
-                  searchNaverLocal('text');
+                  searchNaverLocal(textEditingController.text);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -54,7 +60,8 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
               ),
             ],
-          )
+          ),
+          Text('${items[0]}'),
         ],
       ),
     );
@@ -72,10 +79,23 @@ class _SearchScreenState extends State<SearchScreen> {
 
 
 
-    String str = 'https://openapi.naver.com/v1/search/local.json?query=밥&display=10&start=1&sort=random';
+    String str = 'https://openapi.naver.com/v1/search/local.json?query=$text&display=10&start=1&sort=random';
     Response response;
     response = await dio.get(str);
     print(response.data.toString());
+    var searchData = jsonDecode(response.toString());
+    int total = searchData['total'];
+
+    items.clear();
+    for (int i =0; i<total; i++) {
+    setState(() {
+    //  recievedText = response.data.toString();
+
+        items.add(searchData['items'][i].toString());
+        print(items[i]);
+
+    });
+    }
 
   }
 }
