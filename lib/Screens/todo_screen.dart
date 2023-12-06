@@ -73,6 +73,7 @@ class _TodoScreenState extends State<TodoScreen> {
     final todo = Todo(doc['title'], isDone:doc['isDone']);
     
     return ListTile(
+      onTap: () => updateTodo(doc),
       title: Text(
         todo.title,
         style: todo.isDone?
@@ -92,6 +93,12 @@ class _TodoScreenState extends State<TodoScreen> {
         .collection('todo')
         .add({'title':todo.title,'isDone':todo.isDone});
     textEditingController.text = '';
+  }
+
+  void updateTodo(DocumentSnapshot doc) {
+    FirebaseFirestore.instance
+        .collection('todo')
+        .doc(doc.id).update({'isDone':!doc['isDone']});
   }
 }
 
