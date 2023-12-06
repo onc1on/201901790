@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_project/Screens/input_test_screen.dart';
 import 'package:mobile_project/Screens/search_screen.dart';
 import 'package:mobile_project/Screens/test_widget_screen.dart';
+import 'package:mobile_project/Screens/todo_screen.dart';
 import 'package:mobile_project/Screens/weather_screen.dart';
 
 
@@ -84,6 +85,20 @@ class _NavTestScreenState extends State<NavTestScreen> {
               },
               child: const Text(
                 'Go To Search',
+                style: TextStyle(fontSize: 26),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const TodoScreen(),
+                  ),
+                );
+              },
+              child: const Text(
+                'Go To Todo',
                 style: TextStyle(fontSize: 26),
               ),
             ),
