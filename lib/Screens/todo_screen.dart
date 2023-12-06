@@ -83,7 +83,7 @@ class _TodoScreenState extends State<TodoScreen> {
       
       trailing: IconButton(
         icon: Icon(Icons.delete),
-        onPressed: () {},
+        onPressed: () => deleteTodo(doc),
       ),
       
     );
@@ -99,6 +99,12 @@ class _TodoScreenState extends State<TodoScreen> {
     FirebaseFirestore.instance
         .collection('todo')
         .doc(doc.id).update({'isDone':!doc['isDone']});
+  }
+  
+  void deleteTodo(DocumentSnapshot doc) {
+    FirebaseFirestore.instance
+        .collection('todo')
+        .doc(doc.id).delete();
   }
 }
 
