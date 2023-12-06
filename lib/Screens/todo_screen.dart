@@ -55,8 +55,10 @@ class _TodoScreenState extends State<TodoScreen> {
                     child: ListView.builder(
                         itemBuilder: (context, index) {
                           final data = snapshot.data!.docs[index];
-                          return Placeholder();
-                        }
+                          return buildItem(data);
+                        },
+                      itemCount: snapshot.data!.docs.length,
+                        
                     )
                 );
                 
@@ -67,6 +69,24 @@ class _TodoScreenState extends State<TodoScreen> {
     );
   }
 
+  Widget buildItem(DocumentSnapshot doc) {
+    final todo = Todo(doc['title'], isDone:doc['isDone']);
+    
+    return ListTile(
+      title: Text(
+        todo.title,
+        style: todo.isDone?
+        TextStyle(decoration: TextDecoration.lineThrough,)
+        :null,
+      ),
+      
+      trailing: IconButton(
+        icon: Icon(Icons.delete),
+        onPressed: () {},
+      ),
+      
+    );
+  }
   void addTodo(Todo todo) {
     FirebaseFirestore.instance
         .collection('todo')
