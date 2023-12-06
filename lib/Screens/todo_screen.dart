@@ -41,7 +41,27 @@ class _TodoScreenState extends State<TodoScreen> {
               ),
             ],
           ),
-
+          StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore
+                      .instance
+                      .collection('todo')
+                      .snapshots(), 
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return CircularProgressIndicator();
+                }
+                
+                return Expanded(
+                    child: ListView.builder(
+                        itemBuilder: (context, index) {
+                          final data = snapshot.data!.docs[index];
+                          return Placeholder();
+                        }
+                    )
+                );
+                
+              }
+          ),
         ],
       ),
     );
